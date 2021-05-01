@@ -10,27 +10,23 @@ import json
 
 driver = webdriver.Chrome()
 
-url = 'https://www.youtube.com/c/HBAServices/videos'
+url = 'https://www.youtube/examplechannel/video/'#You have to upload URl of the videos page for scraping
 
 driver.get(url)
 
 driver.maximize_window()
 
-lenOfPage = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-match=False
-while(match==False):
-    lastCount = lenOfPage
+for i in range(0,31):   #loop to scroll down till the last video you can change the from 31 to any other according to your need.
+    
+    last.send_keys(Keys.END)
+    
     time.sleep(3)
-    lenOfPage = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;")
-    print (lenOfPage)
-    if lastCount==lenOfPage:
-        match=True
 
-"""videos = driver.find_elements_by_class_name('style-scope ytd-grid-video-renderer')
+videos = driver.find_elements_by_class_name('style-scope ytd-grid-video-renderer') #finding all the videos present in the page.
 
 count = 1
 
-data = {'Title' : [],
+data = {'Title' : [],         #creating a dictionary for storing scrape data.
        'Link' : [],
         'Views' : [],
         'Upload on' : [],
@@ -38,9 +34,9 @@ data = {'Title' : [],
         'Channel link' : []
        }
 
-channel_link = 'https://www.youtube.com/c/HBAServices/'
+channel_link = 'https://www.youtube/examplechannel/'
 
-channel = 'John Watson Rooney'
+channel = 'Channel name'
 
 for video in videos:
 
@@ -68,7 +64,7 @@ for video in videos:
     
     data_frame = pd.DataFrame(data)
     
-    data_frame.to_excel('hba_channel.xlsx')
+    data_frame.to_excel('file.xlsx')
         
     print(f'{count} :- title = {title}\n\tviews = {views}\n\tupload on {upload_date}\n\tlink = {links[0]}\n\tchannel = {channel}\n\tchannel link = {channel_link}')
         
